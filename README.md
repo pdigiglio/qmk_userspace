@@ -2,6 +2,19 @@
 
 This is a template repository which allows for an external set of QMK keymaps to be defined and compiled. This is useful for users who want to maintain their own keymaps without having to fork the main QMK repository.
 
+**Note:** If you try and compile the firmware for the `dasbob` keyboard, you'll get the following error:
+
+```
+$ qmk compile -kb dasbob -mk default
+usage: qmk compile [-h] [--compiledb] [-t TARGET] [-c] [-e ENV] [-j PARALLEL] [-n] [-km KEYMAP]
+                   [-kb KEYBOARD]
+                   [filename]
+qmk compile: error: argument -kb/--keyboard: invalid keyboard_folder_or_all value: 'dasbob'
+```
+
+This is because no `dasbob` keyboard exists in `qmk_firmware` and [out-of-tree keyboards don't seem to be supported](https://www.reddit.com/r/olkb/comments/1bzfvrh/comment/kypkt7u/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button). You can either copy or symlink the keyboard to `qmk_firmware/keyboards/dasbob`.
+
+
 ## Howto configure your build targets
 
 1. Run the normal `qmk setup` procedure if you haven't already done so -- see [QMK Docs](https://docs.qmk.fm/#/newbs) for details.
