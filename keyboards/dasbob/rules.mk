@@ -24,3 +24,6 @@ LTO_ENABLE = yes
 SERIAL_DRIVER = vendor
 AUDIO_DRIVER = pwm_hardware
 CAPS_WORD_ENABLE = yes
+
+# Enable tap dance
+TAP_DANCE_ENABLE = yes

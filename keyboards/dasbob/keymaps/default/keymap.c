@@ -1,5 +1,33 @@
 #include QMK_KEYBOARD_H
 
+/**
+ * Named indices for elements into array `tap_dance_actions`.
+ */
+enum dasbob_tap_dance {
+    /*
+     * ';' on single
+     * ':' on double
+     */
+    TD_SEMICOL_COL,
+    /*
+     * ',' on single
+     * ':' on double
+     */
+    TD_COMMA_COL,
+};
+
+/**
+ * Tap dance action definitions.
+ */
+tap_dance_action_t tap_dance_actions[] = {
+    /**
+     * NOTE: this doesn't work because I already have a tap-hold on ';'.
+     * For the time being, I'll use ',,' for ':'.
+     */
+    [TD_SEMICOL_COL] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, KC_COLN),
+    [TD_COMMA_COL]   = ACTION_TAP_DANCE_DOUBLE(KC_COMM, KC_COLN),
+};
+
 enum dasbob_layers {
   _QWERTY,
   _LOWER, // L1
@@ -20,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * │ WIN │ SFT │ CTL │ ALT │     │        │     │ ALT │ CTL │ SFT │ WIN │
       * ├─────┼─────┼─────┼─────┼─────┤        ├─────┼─────┼─────┼─────┼─────┤
       * │  Z  │  X  │  C  │  V  │  B  │        │  N  │  M  │  <  │  >  │  ?  │
-      * │     │     │     │     │     │        │     │     │  ,  │  .  │  /  │
+      * │     │     │     │     │     │        │     │     │  ,: │  .  │  /  │
       * └─────┴─────┴─────┴─────┴─────┘        └─────┴─────┴─────┴─────┴─────┘
       *               ┌─────┐                            ┌─────┐
       *               │ L3  ├─────┐                ┌─────┤ RAL │
@@ -31,9 +59,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       */
 
     [_QWERTY] = LAYOUT_split_3x5_3(
-        KC_Q,         KC_W,         KC_E,         KC_R,         KC_T,                      KC_Y,          KC_U,         KC_I,         KC_O,         KC_P,
-        LGUI_T(KC_A), LSFT_T(KC_S), LCTL_T(KC_D), LALT_T(KC_F), KC_G,                      KC_H,          LALT_T(KC_J), LCTL_T(KC_K), LSFT_T(KC_L), LGUI_T(KC_SCLN),
-        KC_Z,         KC_X,         KC_C,         KC_V,         KC_B,                      KC_N,          KC_M,         KC_COMM,      KC_DOT,       KC_SLSH,
+        KC_Q,         KC_W,         KC_E,         KC_R,         KC_T,                      KC_Y,          KC_U,         KC_I,             KC_O,         KC_P,
+        LGUI_T(KC_A), LSFT_T(KC_S), LCTL_T(KC_D), LALT_T(KC_F), KC_G,                      KC_H,          LALT_T(KC_J), LCTL_T(KC_K),     LSFT_T(KC_L), LGUI_T(KC_SCLN),
+        KC_Z,         KC_X,         KC_C,         KC_V,         KC_B,                      KC_N,          KC_M,         TD(TD_COMMA_COL), KC_DOT,       KC_SLSH,
                                     MO(3),        KC_SPC,       LT(2, KC_TAB),             LT(1, KC_ESC), KC_BSPC,      KC_RALT
     ),
 
@@ -229,9 +257,16 @@ bool oled_task_user(void) {
 #endif
 
 #ifdef QUICK_TAP_TERM_PER_KEY
-// Holding a dual-function key after tappping it within QUICK_TAP_TERM repets
-// the tap. I want to disable this for come keys; in particular <Tab>, <Ecs>, S
-// and L (both of which send <Shift> when held).
+
+/**
+ * Holding a dual-function key after tappping it within QUICK_TAP_TERM repets the tap.
+ * I want to disable this for come keys; in particular <Tab>, <Ecs>, S and L (both of
+ * which send <Shift> when held).
+ *
+ * \param keycode
+ * \param record
+ * \returns
+ */
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_TAB:
