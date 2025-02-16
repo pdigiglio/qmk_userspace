@@ -51,8 +51,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * │ XXX │  +  │  /  │  =  │  |  │        │  _  │  7  │  8  │  9  │  .  │
       * └─────┴─────┴─────┴─────┴─────┘        └─────┴─────┴─────┴─────┴─────┘
       *               ┌─────┐                            ┌─────┐
-      *               │ L4  ├─────┐                ┌─────┤ ^^^ │
-      *               └─────┤ TAB ├─────┐    ┌─────┤ ^^^ ├─────┘
+      *               │ L4  ├─────┐                ┌─────┤ ___ │
+      *               └─────┤ TAB ├─────┐    ┌─────┤ ___ ├─────┘
       *                     └─────│ ENT │    │     ├─────┘
       *                           └─────┘    └─────┘
       */
@@ -61,31 +61,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_EXLM,         KC_AT,           KC_HASH,         KC_CIRC,         KC_PERC,            KC_DQUO,    KC_1,         KC_2,         KC_3,         KC_QUOT,
        KC_TILD,         KC_MINS,         KC_ASTR,         KC_DLR,          KC_AMPR,            KC_COLN,    LALT_T(KC_4), LCTL_T(KC_5), LSFT_T(KC_6), LGUI_T(KC_0),
        XXXXXXX,         KC_PLUS,         KC_SLSH,         KC_EQL,          KC_PIPE,            KC_UNDS,    KC_7,         KC_8,         KC_9,         KC_DOT,
-                                         MO(4),           KC_SPC,          KC_ENT,             KC_ENT,     KC_TRNS,      KC_TRNS
+                                         MO(4),           KC_SPC,          KC_ENT,             KC_ENT,     _______,      _______
                                                                                                /* fake */
     ),
 
      /* Layer lmod:
       *
       * ┌─────┬─────┬─────┬─────┬─────┐        ┌─────┬─────┬─────┬─────┬─────┐
-      * │ ^^^ │ ^^^ │ ^^^ │ ^^^ │ ^^^ │        │ ^^^ │ ^^^ │ ^^^ │ ^^^ │ ^^^ │
+      * │ ___ │ ___ │ ___ │ ___ │ ___ │        │ ___ │ ___ │ ___ │ ___ │ ___ │
       * ├─────┼─────┼─────┼─────┼─────┤        ├─────┼─────┼─────┼─────┼─────┤
-      * │ WIN │ SFT │ CTL │ ALT │ ^^^ │        │ ^^^ │ ^^^ │ ^^^ │ ^^^ │ ^^^ │
+      * │ WIN │ SFT │ CTL │ ALT │ ___ │        │ ___ │ ___ │ ___ │ ___ │ ___ │
       * ├─────┼─────┼─────┼─────┼─────┤        ├─────┼─────┼─────┼─────┼─────┤
-      * │ ^^^ │ ^^^ │ ^^^ │ ^^^ │ ^^^ │        │ ^^^ │ ^^^ │ ^^^ │ ^^^ │ ^^^ │
+      * │ ___ │ ___ │ ___ │ ___ │ ___ │        │ ___ │ ___ │ ___ │ ___ │ ___ │
       * └─────┴─────┴─────┴─────┴─────┘        └─────┴─────┴─────┴─────┴─────┘
       *               ┌─────┐                            ┌─────┐
-      *               │     ├─────┐                ┌─────┤ ^^^ │
-      *               └─────┤ ^^^ ├─────┐    ┌─────┤ ^^^ ├─────┘
-      *                     └─────│ ^^^ │    │     ├─────┘
+      *               │     ├─────┐                ┌─────┤ ___ │
+      *               └─────┤ ___ ├─────┐    ┌─────┤ ___ ├─────┘
+      *                     └─────│ ___ │    │     ├─────┘
       *                           └─────┘    └─────┘
       */
 
     [_LMOD] = LAYOUT_split_3x5_3(
-       KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,        KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
-       KC_LGUI,  KC_LSFT,  KC_LCTL,  KC_LALT,  KC_TRNS,        KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
-       KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,        KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
-                           KC_TRNS,  KC_TRNS,  KC_TRNS,        KC_TRNS,  KC_TRNS,  KC_TRNS
+       _______,  _______,  _______,  _______,  _______,        _______,  _______,  _______,  _______,  _______,
+       KC_LGUI,  KC_LSFT,  KC_LCTL,  KC_LALT,  _______,        _______,  _______,  _______,  _______,  _______,
+       _______,  _______,  _______,  _______,  _______,        _______,  _______,  _______,  _______,  _______,
+                           _______,  _______,  _______,        _______,  _______,  _______
     ),
 
      /* Layer raise:
@@ -101,8 +101,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * │ XXX │ XXX │ F11 │ F11 │ XXX │        │  _  │  \  │  <  │  >  │  /  │
       * └─────┴─────┴─────┴─────┴─────┘        └─────┴─────┴─────┴─────┴─────┘
       *               ┌─────┐                            ┌─────┐
-      *               │ ^^^ ├─────┐                ┌─────┤ L5  │
-      *               └─────┤ ^^^ ├─────┐    ┌─────┤ DEL ├─────┘
+      *               │ ___ ├─────┐                ┌─────┤ L5  │
+      *               └─────┤ ___ ├─────┐    ┌─────┤ DEL ├─────┘
       *                     └─────│     │    │ ENT ├─────┘
       *                           └─────┘    └─────┘
       */
@@ -111,31 +111,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_F1,         KC_F2,         KC_F3,         KC_F4,         KC_F5,               KC_DQUO,     KC_GRV,          KC_LBRC,         KC_RBRC,         KC_QUOT,
         LGUI_T(KC_F6), LSFT_T(KC_F7), LCTL_T(KC_F8), LALT_T(KC_F9), KC_F10,              KC_COLN,     KC_LPRN,         KC_LCBR,         KC_RCBR,         KC_RPRN,
         XXXXXXX,       XXXXXXX,       KC_F11,        KC_F12,        XXXXXXX,             KC_UNDS,     KC_BSLS,         KC_LT,           KC_GT,           KC_SLSH,
-                                      KC_TRNS,       KC_TRNS,       KC_ENT,              KC_ENT,      KC_DEL,          MO(5)
+                                      _______,       _______,       KC_ENT,              KC_ENT,      KC_DEL,          MO(5)
                                                                     /* fake */
     ),
 
      /* Layer rmod:
       *
       * ┌─────┬─────┬─────┬─────┬─────┐        ┌─────┬─────┬─────┬─────┬─────┐
-      * │ ^^^ │ ^^^ │ ^^^ │ ^^^ │ ^^^ │        │ ^^^ │ ^^^ │ ^^^ │ ^^^ │ ^^^ │
+      * │ ___ │ ___ │ ___ │ ___ │ ___ │        │ ___ │ ___ │ ___ │ ___ │ ___ │
       * ├─────┼─────┼─────┼─────┼─────┤        ├─────┼─────┼─────┼─────┼─────┤
-      * │ ^^^ │ ^^^ │ ^^^ │ ^^^ │ ^^^ │        │ ^^^ │ ALT │ CTL │ SFT │ WIN │
+      * │ ___ │ ___ │ ___ │ ___ │ ___ │        │ ___ │ ALT │ CTL │ SFT │ WIN │
       * ├─────┼─────┼─────┼─────┼─────┤        ├─────┼─────┼─────┼─────┼─────┤
-      * │ ^^^ │ ^^^ │ ^^^ │ ^^^ │ ^^^ │        │ ^^^ │ ^^^ │ ^^^ │ ^^^ │ ^^^ │
+      * │ ___ │ ___ │ ___ │ ___ │ ___ │        │ ___ │ ___ │ ___ │ ___ │ ___ │
       * └─────┴─────┴─────┴─────┴─────┘        └─────┴─────┴─────┴─────┴─────┘
       *               ┌─────┐                            ┌─────┐
-      *               │ ^^^ ├─────┐                ┌─────┤     │
-      *               └─────┤ ^^^ ├─────┐    ┌─────┤ ^^^ ├─────┘
-      *                     └─────│     │    │ ^^^ ├─────┘
+      *               │ ___ ├─────┐                ┌─────┤     │
+      *               └─────┤ ___ ├─────┐    ┌─────┤ ___ ├─────┘
+      *                     └─────│     │    │ ___ ├─────┘
       *                           └─────┘    └─────┘
       */
 
     [_RMOD] = LAYOUT_split_3x5_3(
-       KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,        KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
-       KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,        KC_TRNS,  KC_LALT,  KC_LCTL,  KC_LSFT,  KC_LGUI,
-       KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,        KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
-                           KC_TRNS,  KC_TRNS,  KC_TRNS,        KC_TRNS,  KC_TRNS,  KC_TRNS
+       _______,  _______,  _______,  _______,  _______,        _______,  _______,  _______,  _______,  _______,
+       _______,  _______,  _______,  _______,  _______,        _______,  KC_LALT,  KC_LCTL,  KC_LSFT,  KC_LGUI,
+       _______,  _______,  _______,  _______,  _______,        _______,  _______,  _______,  _______,  _______,
+                           _______,  _______,  _______,        _______,  _______,  _______
     ),
 
      /* Layer curs:
@@ -148,9 +148,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * │ XXX │ XXX │ XXX │ XXX │ XXX │        │ XXX │ XXX │ XXX │ XXX │ XXX │
       * └─────┴─────┴─────┴─────┴─────┘        └─────┴─────┴─────┴─────┴─────┘
       *               ┌─────┐                            ┌─────┐
-      *               │     ├─────┐                ┌─────┤ ^^^ │
-      *               └─────┤ ^^^ ├─────┐    ┌─────┤ ^^^ ├─────┘
-      *                     └─────│ ^^^ │    │ ENT ├─────┘
+      *               │     ├─────┐                ┌─────┤ ___ │
+      *               └─────┤ ___ ├─────┐    ┌─────┤ ___ ├─────┘
+      *                     └─────│ ___ │    │ ENT ├─────┘
       *                           └─────┘    └─────┘
       */
 
@@ -158,7 +158,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX,    CW_TOGG,    KC_INS,     XXXXXXX,    XXXXXXX,             XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,     XXXXXXX,
         KC_LGUI,    KC_LSFT,    KC_LCTL,    KC_LALT,    XXXXXXX,             KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,    XXXXXXX,
         XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,             XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,     XXXXXXX,
-                                KC_TRNS,    KC_TRNS,    KC_TRNS,             KC_ENT,     KC_TRNS,    KC_TRNS
+                                _______,    _______,    _______,             KC_ENT,     _______,    _______
                                 /* fake */
     ),
 };
