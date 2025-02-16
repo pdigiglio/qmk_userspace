@@ -1,5 +1,21 @@
 #include QMK_KEYBOARD_H
 
+enum dasbob_custom_keycodes {
+    QMK_ARR = SAFE_RANGE
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case QMK_ARR:
+            if (record->event.pressed) {
+                SEND_STRING("->");
+            }
+            break;
+    }
+
+    return true;
+};
+
 /**
  * Named indices for elements into array `tap_dance_actions`.
  */
@@ -76,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       * │     │     │     │     │     │        │     │ ALT │ CTL │ SFT │ WIN │
       * ├─────┼─────┼─────┼─────┼─────┤        ├─────┼─────┼─────┼─────┼─────┤
       * │     │     │  ?  │  +  │     │        │     │  &  │  *  │  (  │  >  │
-      * │ XXX │  +  │  /  │  =  │  |  │        │  _  │  7  │  8  │  9  │  .  │
+      * │  -> │  +  │  /  │  =  │  |  │        │  _  │  7  │  8  │  9  │  .  │
       * └─────┴─────┴─────┴─────┴─────┘        └─────┴─────┴─────┴─────┴─────┘
       *               ┌─────┐                            ┌─────┐
       *               │ L4  ├─────┐                ┌─────┤ ___ │
@@ -88,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_LOWER] = LAYOUT_split_3x5_3(
        KC_EXLM,         KC_AT,           KC_HASH,         KC_CIRC,         KC_PERC,            KC_DQUO,    KC_1,         KC_2,         KC_3,         KC_QUOT,
        KC_TILD,         KC_MINS,         KC_ASTR,         KC_DLR,          KC_AMPR,            KC_COLN,    LALT_T(KC_4), LCTL_T(KC_5), LSFT_T(KC_6), LGUI_T(KC_0),
-       XXXXXXX,         KC_PLUS,         KC_SLSH,         KC_EQL,          KC_PIPE,            KC_UNDS,    KC_7,         KC_8,         KC_9,         KC_DOT,
+       QMK_ARR,         KC_PLUS,         KC_SLSH,         KC_EQL,          KC_PIPE,            KC_UNDS,    KC_7,         KC_8,         KC_9,         KC_DOT,
                                          MO(4),           KC_SPC,          KC_ENT,             KC_ENT,     _______,      _______
                                                                                                /* fake */
     ),

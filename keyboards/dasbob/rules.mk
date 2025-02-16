@@ -27,3 +27,5 @@ CAPS_WORD_ENABLE = yes
 
 # Enable tap dance
 TAP_DANCE_ENABLE = yes
+SEND_STRING_ENABLE = yes
+
